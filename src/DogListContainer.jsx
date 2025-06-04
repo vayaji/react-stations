@@ -13,15 +13,20 @@ export const DogListContainer = () => {
       .then((res) => {setBreeds(Object.keys(res.message)); setSelectedBreed(Object.keys(res.message)[0])});
   }, []);
   const handleClick = () => {
-    fetch(`https://dog.ceo/api/breed/${selectedBreed}/images/random/12`)
+    fetch(`https://dog.ceo/api/breed/${selectedBreed}/images`)
       .then((res) => res.json())
       .then((res) => {setImages(res.message); console.log(res.message)});
   };
-  return <>
-    <BreedsSelect breeds={breeds} setSelectedBreed={setSelectedBreed}  />
-    <button type="button" onClick={handleClick}>表示</button>
-    {images.map((url, index) => <img key={index} src={url} />)}
-  </>
+  return <div className="dog-list-container">
+    <div className="control">
+      Breeds list
+      <BreedsSelect breeds={breeds} setSelectedBreed={setSelectedBreed}  />
+      <button type="button" onClick={handleClick}>表示</button>
+    </div>
+    <ul>
+    {images.map((url, index) => <li><img key={index} src={url} /></li>)}
+    </ul>
+  </div>
 }
 
 export default DogListContainer

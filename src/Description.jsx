@@ -14,13 +14,15 @@ export const Description = () => {
 			.then((res) => setDogUrl(res.message));
 	};
 	return (
-		<>
+		<div className="description">
 			<p>犬の画像を表示するサイトです。</p>
-			<button className="refresh" type="button" onClick={handleSubmit}>
-				更新
-			</button>
-			<DogImage imageUrl={dogUrl} />
-		</>
+			<div className="image">
+				<DogImage imageUrl={dogUrl} />
+				<button className="refresh" type="button" onClick={handleSubmit}>
+					更新
+				</button>
+			</div>
+		</div>
 	);
 };
 
